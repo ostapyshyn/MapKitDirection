@@ -17,7 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        mapView.showsUserLocation = true
         // Convert address to coordinate and annotate it on map
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(restaurant.location, completionHandler: { placemarks, error in
@@ -52,6 +52,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             mapView.showsScale = true
             mapView.showsTraffic = true
         }
+    }
+    
+    @IBAction func showDirection(sender: UIButton) {
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
