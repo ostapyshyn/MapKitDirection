@@ -10,13 +10,23 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-
+    
     @IBOutlet var mapView: MKMapView!
     
     var restaurant:Restaurant!
 
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Request for a user's authorization for location services
+        locationManager.requestWhenInUseAuthorization()
+        let status = CLLocationManager.authorizationStatus()
+        if status == CLAuthorizationStatus.authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        }
+        
         mapView.showsUserLocation = true
         // Convert address to coordinate and annotate it on map
         let geoCoder = CLGeocoder()
